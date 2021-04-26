@@ -1,6 +1,7 @@
 import logoImg from "./img/logo.jpg"
 import avatar from "./img/avatar.jpg"
 import lazyLoader from "./img/loading.gif"
+import submit from "./img/submit.png"
 
 const mockData = {
   logo: logoImg,
@@ -21,7 +22,14 @@ const mockData = {
     },
     section3: {
       morePicture: "לעוד תמונות",
-      photos: "תמונות"
+      photos: "תמונות",
+      modal: {
+        aboutPicture: "ספרו משהו על התמונה הזאת",
+        datePhoto: "תאריך צילום",
+        description: "תיאור ותאריך זהים לכל התמונות",
+        raise: "העלאה",
+        fromGallery: "מהגלריה"
+      }
     },
     section4: {
       subTitle: "תגובות",
@@ -30,7 +38,8 @@ const mockData = {
       placeHolder: {
         comment: "כתבו תגובה חדשה",
         fullname: "כתבו שם מלא"
-      }
+      },
+      submit: submit
     }
   }
 }

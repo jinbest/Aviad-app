@@ -1,26 +1,62 @@
-import React from "react"
+import React, { useState } from "react"
 import { storeDetails } from "../../store"
 import { observer } from "mobx-react"
 import { mockData } from "../../assets/mock-data"
 import moment from "moment"
-// import _ from "lodash"
-// import FavoriteIcon from "@material-ui/icons/Favorite"
+import { ToastMsgParams } from "../../components/toast/toast-msg-params"
+import Toast from "../../components/toast/toast"
+import Config from "../../config/config"
+import Notification from "../../const/notification"
+import AuthenticatedAPiClient from "../../services/authenticated-api-client"
 
 const Section4 = () => {
+  const apiClient = AuthenticatedAPiClient.getInstance()
+
   const thisPage = storeDetails.storeData.comments
   const thisMock = mockData.static.section4
 
-  // const [liked, setLiked] = useState<any[]>([])
+  const [fullname, setFullName] = useState("")
+  const [comment, setComment] = useState("")
+  const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
 
-  // useEffect(() => {
-  //   const tmpLiked = new Array(thisPage.length).fill(false)
-  //   setLiked([..._.cloneDeep(tmpLiked)])
-  // }, [])
+  const resetStatuses = () => {
+    setToastParams({
+      msg: "",
+      isError: false,
+      isWarning: false,
+      isInfo: false,
+      isSuccess: false,
+    })
+  }
 
-  // const handleLike = (index: number) => {
-  //   liked[index] = !liked[index]
-  //   setLiked([...liked])
-  // }
+  const handleSubmit = async () => {
+    if (fullname && comment) {
+      let msg = Notification.SUCCESS_MSG
+      let failed = false
+      try {
+        await apiClient.post(`${Config.SERVICE_API_URL}page/comment/request`, {
+          name: fullname,
+          comment: comment,
+        })
+      } catch (error) {
+        msg = Notification.FAILED_RUQUEST
+        failed = true
+      } finally {
+        setToastParams({
+          msg,
+          isError: failed,
+          isSuccess: !failed,
+        })
+        setFullName("")
+        setComment("")
+      }
+    } else {
+      setToastParams({
+        msg: Notification.FAILED_MSG,
+        isError: true,
+      })
+    }
+  }
 
   return (
     <div className="section">
@@ -37,31 +73,33 @@ const Section4 = () => {
                 {`${moment(item.created).format("hh:mm")} - ${moment(item.created).fromNow()}`}
               </p>
               <hr className="comment-liner" />
-              {/* <div
-                className="commented-liked"
-                style={{ background: liked[index] ? "#efd2c2" : "#fdf6f8" }}
-                onClick={() => {
-                  handleLike(index)
-                }}
-              >
-                <FavoriteIcon
-                  className="fav-icon"
-                  style={{ color: liked[index] ? "#fdf6f8" : "#efd2c2" }}
-                />
-                <p className="medium-text">{thisMock.liked}</p>
-              </div> */}
             </div>
           )
         })}
         <div className="comment-card">
-          <textarea placeholder={thisMock.placeHolder.comment} />
+          <textarea
+            placeholder={thisMock.placeHolder.comment}
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value)
+            }}
+          />
           <hr className="comment-liner" />
-          <div className="d-flex space-between">
-            <button>POST</button>
-            <input placeholder={thisMock.placeHolder.fullname} />
+          <div className="d-flex space-between align-center">
+            <div onClick={handleSubmit} className="submit">
+              <img src={thisMock.submit} alt="submit-img" />
+            </div>
+            <input
+              placeholder={thisMock.placeHolder.fullname}
+              value={fullname}
+              onChange={(e) => {
+                setFullName(e.target.value)
+              }}
+            />
           </div>
         </div>
       </div>
+      <Toast params={toastParams} resetStatuses={resetStatuses} />
     </div>
   )
 }
