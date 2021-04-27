@@ -247,6 +247,10 @@ $padding-container: 50px;
   width: 500px;
   max-width: 100vw;
   margin: auto;
+  form {
+    outline: none;
+    border: none;
+  }
   .paper {
     border: none;
     outline: none;
@@ -339,6 +343,13 @@ $padding-container: 50px;
         p {
           padding: 5px 0;
         }
+      }
+      input {
+        border: none;
+        outline: none;
+        font-size: 18px;
+        text-align: right;
+        background-color: transparent;
       }
     }
   }

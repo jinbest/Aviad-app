@@ -8,6 +8,8 @@ import Toast from "../../components/toast/toast"
 import Config from "../../config/config"
 import Notification from "../../const/notification"
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
+import { hashCode } from "../../const/token"
+import DcSpinner from "../../components/dc-spinner"
 
 const Section4 = () => {
   const apiClient = AuthenticatedAPiClient.getInstance()
@@ -18,6 +20,7 @@ const Section4 = () => {
   const [fullname, setFullName] = useState("")
   const [comment, setComment] = useState("")
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
+  const [submited, setSubmitted] = useState(false)
 
   const resetStatuses = () => {
     setToastParams({
@@ -30,6 +33,7 @@ const Section4 = () => {
   }
 
   const handleSubmit = async () => {
+    setSubmitted(true)
     if (fullname && comment) {
       let msg = Notification.SUCCESS_MSG
       let failed = false
@@ -37,6 +41,7 @@ const Section4 = () => {
         await apiClient.post(`${Config.SERVICE_API_URL}page/comment/request`, {
           name: fullname,
           comment: comment,
+          hash: hashCode,
         })
       } catch (error) {
         msg = Notification.FAILED_RUQUEST
@@ -56,6 +61,7 @@ const Section4 = () => {
         isError: true,
       })
     }
+    setSubmitted(false)
   }
 
   return (
@@ -100,6 +106,7 @@ const Section4 = () => {
         </div>
       </div>
       <Toast params={toastParams} resetStatuses={resetStatuses} />
+      <DcSpinner show={submited} />
     </div>
   )
 }
