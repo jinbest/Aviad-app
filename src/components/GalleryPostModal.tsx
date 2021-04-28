@@ -14,6 +14,7 @@ import Config from "../config/config"
 import Notification from "../const/notification"
 import DcSpinner from "./dc-spinner"
 import moment from "moment"
+import { formAxios } from "../services/helper"
 
 type Props = {
   showModal: boolean
@@ -41,20 +42,28 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    const bodyFormData = new Array(3).fill(new FormData())
+    if (!uploader) {
+      setToastParams({
+        msg: "Please fill input form first before you submit.",
+        isError: true,
+      })
+      return
+    }
+    imageFiles.forEach((item: any) => {
+      if (!item) return
+      const bodyFormData = new FormData()
 
-    imageFiles.forEach((item: any, index: number) => {
-      bodyFormData[index].append("hash", hashCode)
-      bodyFormData[index].append("uploader", uploader)
-      bodyFormData[index].append("title", item.name)
-      bodyFormData[index].append("taken", moment().format())
-      bodyFormData[index].append("image", item)
+      bodyFormData.append("hash", hashCode)
+      bodyFormData.append("uploader", uploader)
+      bodyFormData.append("title", item.name)
+      bodyFormData.append("taken", new Date().getTime().toString())
+      bodyFormData.append("image", item)
+
+      handlePost(bodyFormData)
     })
-
-    handlePost(bodyFormData)
   }
 
-  const handlePost = async (bodyFormDatas: any[]) => {
+  const handlePost = async (bodyFormDatas: any) => {
     setSubmitted(true)
     let msg = Notification.SUCCESS_MSG
     let failed = false
@@ -70,6 +79,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
         isSuccess: !failed,
       })
     }
+    handleClose()
     setSubmitted(false)
   }
 
