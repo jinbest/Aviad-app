@@ -8,7 +8,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #bbb;
-  overflow: visible !important;
+  /* overflow: visible !important; */
   padding: 0 !important;
 }
 

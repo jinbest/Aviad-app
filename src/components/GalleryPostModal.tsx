@@ -13,8 +13,6 @@ import AuthenticatedAPiClient from "../services/authenticated-api-client"
 import Config from "../config/config"
 import Notification from "../const/notification"
 import DcSpinner from "./dc-spinner"
-import moment from "moment"
-import { formAxios } from "../services/helper"
 
 type Props = {
   showModal: boolean
