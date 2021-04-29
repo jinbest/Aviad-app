@@ -13,6 +13,8 @@ import AuthenticatedAPiClient from "../services/authenticated-api-client"
 import Config from "../config/config"
 import Notification from "../const/notification"
 import DcSpinner from "./dc-spinner"
+import { TextField } from "@material-ui/core"
+import moment from "moment"
 
 type Props = {
   showModal: boolean
@@ -29,6 +31,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [submited, setSubmitted] = useState(false)
   const [uploader, setUploader] = useState("")
+  const [date, setDate] = useState(moment().format("YYYY-MM-DD"))
 
   const handleClose = () => {
     setImages(new Array(3).fill(null))
@@ -54,7 +57,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
       bodyFormData.append("hash", hashCode)
       bodyFormData.append("uploader", uploader)
       bodyFormData.append("title", item.name)
-      bodyFormData.append("taken", new Date().getTime().toString())
+      bodyFormData.append("taken", new Date(date).getTime().toString())
       bodyFormData.append("image", item)
 
       handlePost(bodyFormData)
@@ -213,7 +216,6 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
                 </div>
               </div>
               <div className="modal-text-container">
-                {/* <p className="normal-text">{thisPage.aboutPicture}</p> */}
                 <input
                   placeholder={thisPage.aboutPicture}
                   value={uploader}
@@ -221,7 +223,20 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
                     setUploader(e.target.value)
                   }}
                 />
-                <p className="normal-text">{thisPage.datePhoto}</p>
+                <TextField
+                  value={date}
+                  onChange={(e) => {
+                    if (e.target.value.length >= 0) {
+                      setDate(e.target.value)
+                    }
+                  }}
+                  className="custom-date-picker"
+                  margin="dense"
+                  autoComplete="off"
+                  type="date"
+                  placeholder={thisPage.datePhoto}
+                  required
+                />
                 <div className="d-flex align-center space-between m-left fit-width">
                   <p className="normal-text" style={{ marginRight: "10px" }}>
                     {thisPage.description}

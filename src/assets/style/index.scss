@@ -511,3 +511,16 @@ $padding-container: 50px;
     }
   }
 }
+
+.custom-date-picker {
+  width: 200px !important;
+  display: block !important;
+  margin-left: auto !important;
+  input {
+    font-size: 14px !important;
+  }
+  .MuiInput-underline:before,
+  .MuiInput-underline:after {
+    border-bottom: none !important;
+  }
+}
