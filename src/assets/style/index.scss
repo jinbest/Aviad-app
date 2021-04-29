@@ -523,4 +523,7 @@ $padding-container: 50px;
   .MuiInput-underline:after {
     border-bottom: none !important;
   }
+  .MuiInputBase-root {
+    display: inherit !important;
+  }
 }
