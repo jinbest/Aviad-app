@@ -1,53 +1,28 @@
 import React, { useEffect, useState } from "react"
-import AuthenticatedAPiClient from "./services/authenticated-api-client"
 import { Provider, observer } from "mobx-react"
-import Config from "./config/config"
 import { storeDetails } from "./store"
-import { Preloader, Header } from "./components"
-import { Home } from "./pages/home"
-import { Error } from "./pages/error"
 import "./assets/style/index.scss"
+import BaseRouter from "./BaseRouter"
+import { BrowserRouter as Router } from "react-router-dom"
 
 const App = () => {
-  const apiClient = AuthenticatedAPiClient.getInstance()
-
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [hashCode, setHashCode] = useState("")
 
   useEffect(() => {
     const href = window.location.href,
-      hashCode = href.split("/")[href.split("/").length - 1]
-    if (hashCode) {
-      loadData(hashCode)
-    } else {
-      setError(true)
-      setLoading(true)
-    }
-    return () => {
-      setLoading(false)
-    }
+      hash = href.split("/")[href.split("/").length - 1],
+      code = hash ? hash.split("?")[1] : ""
+    setHashCode(code)
   }, [])
 
-  const loadData = async (hashCode: string) => {
-    const storeData = await apiClient.get<any>(`${Config.SERVICE_API_URL}page/${hashCode}`)
-    storeDetails.setStoreData(storeData)
-    storeDetails.setHashCode(hashCode)
-    setLoading(true)
-  }
-
   return (
-    <>
-      {loading ? (
-        <Provider storeDetails={storeDetails}>
-          <div className="Container">
-            <Header />
-            {!error ? <Home /> : <Error />}
-          </div>
-        </Provider>
-      ) : (
-        <Preloader />
-      )}
-    </>
+    <Provider storeDetails={storeDetails}>
+      <div className="Container">
+        <Router>
+          <BaseRouter hashCode={hashCode} />
+        </Router>
+      </div>
+    </Provider>
   )
 }
 
