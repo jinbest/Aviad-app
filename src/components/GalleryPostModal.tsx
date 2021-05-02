@@ -6,7 +6,6 @@ import CloseIcon from "@material-ui/icons/Close"
 import AddIcon from "@material-ui/icons/Add"
 import { mockData } from "../assets/mock-data"
 import { CustomToggler } from "../components"
-import { hashCode } from "../const/token"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import AuthenticatedAPiClient from "../services/authenticated-api-client"
@@ -15,6 +14,8 @@ import Notification from "../const/notification"
 import DcSpinner from "./dc-spinner"
 import { TextField } from "@material-ui/core"
 import moment from "moment"
+import { storeDetails } from "../store"
+import { observer } from "mobx-react"
 
 type Props = {
   showModal: boolean
@@ -54,7 +55,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
       if (!item) return
       const bodyFormData = new FormData()
 
-      bodyFormData.append("hash", hashCode)
+      bodyFormData.append("hash", storeDetails.hashCode)
       bodyFormData.append("uploader", uploader)
       bodyFormData.append("title", item.name)
       bodyFormData.append("taken", new Date(date).getTime().toString())
@@ -254,4 +255,4 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
   )
 }
 
-export default GalleryPostModal
+export default observer(GalleryPostModal)

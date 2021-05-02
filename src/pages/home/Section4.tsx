@@ -8,7 +8,6 @@ import Toast from "../../components/toast/toast"
 import Config from "../../config/config"
 import Notification from "../../const/notification"
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
-import { hashCode } from "../../const/token"
 import DcSpinner from "../../components/dc-spinner"
 
 const Section4 = () => {
@@ -41,7 +40,7 @@ const Section4 = () => {
         await apiClient.post(`${Config.SERVICE_API_URL}page/comment/request`, {
           name: fullname,
           comment: comment,
-          hash: hashCode,
+          hash: storeDetails.hashCode,
         })
       } catch (error) {
         msg = Notification.FAILED_RUQUEST
