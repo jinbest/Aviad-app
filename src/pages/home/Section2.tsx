@@ -40,11 +40,15 @@ const Section2 = () => {
         <p className="heavy-text">{thisMock.subTitle}</p>
       </div>
       <div className="custom-button-container">
-        <a href="https://waze.com/ul?q=" target="_blank" rel="noreferrer">
-          <CustomButton title="נווט לאירוע" type="AREA"/>
+        <a
+          href={`https://waze.com/ul?q=${storeDetails.storeData.page.location}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <CustomButton title="נווט לאירוע" type="AREA" />
         </a>
         <a href="tel:1234567890">
-          <CustomButton title="התקשר ליוצר הדף" type="PHONE"/>
+          <CustomButton title="התקשר ליוצר הדף" type="PHONE" />
         </a>
       </div>
       <div className="main-container">
