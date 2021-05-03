@@ -6,6 +6,7 @@ import moment from "moment"
 import { DateParam } from "../../model/date-param"
 import { getFormattedDate } from "../../services/helper"
 import { isEmpty } from "lodash"
+import { CustomButton } from "../../components"
 
 const Section2 = () => {
   const thisPage = storeDetails.storeData.events
@@ -38,8 +39,13 @@ const Section2 = () => {
       <div className="main-container">
         <p className="heavy-text">{thisMock.subTitle}</p>
       </div>
-      <div className="sec2-img-container">
-        <img src={thisMock.familyBgImg} alt="family-background" />
+      <div className="custom-button-container">
+        <a href="https://waze.com/ul?q=" target="_blank" rel="noreferrer">
+          <CustomButton title="נווט לאירוע" type="AREA"/>
+        </a>
+        <a href="tel:1234567890">
+          <CustomButton title="התקשר ליוצר הדף" type="PHONE"/>
+        </a>
       </div>
       <div className="main-container">
         {!isEmpty(startDates) &&
@@ -51,13 +57,6 @@ const Section2 = () => {
               </div>
             )
           })}
-      </div>
-      <div className="main-container">
-        <p className="normal-text">{thisMock.subProfile.title}</p>
-        <div className="sub-profile">
-          <p className="heavy-text">{thisMock.subProfile.name}</p>
-          <img src={thisMock.subProfile.img} alt="sub-profile-avatar" />
-        </div>
       </div>
       <hr className="liner" />
     </div>

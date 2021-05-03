@@ -85,12 +85,14 @@ const Section4 = () => {
           <textarea
             placeholder={thisMock.placeHolder.comment}
             value={comment}
+            maxLength={250}
+            className="custom-scroll-bar"
             onChange={(e) => {
               setComment(e.target.value)
             }}
           />
           <hr className="comment-liner" />
-          <div className="d-flex space-between align-center">
+          <div className="d-flex space-between align-center" style={{height: '40px'}}>
             <div onClick={handleSubmit} className="submit">
               <img src={thisMock.submit} alt="submit-img" />
             </div>

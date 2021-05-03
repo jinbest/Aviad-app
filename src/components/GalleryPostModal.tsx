@@ -32,6 +32,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [submited, setSubmitted] = useState(false)
   const [uploader, setUploader] = useState("")
+  const [aboutPicture, setAboutPicture] = useState("")
   const [date, setDate] = useState(moment().format("YYYY-MM-DD"))
 
   const handleClose = () => {
@@ -40,6 +41,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
     setChecked(false)
     onCloseModal(false)
     setUploader("")
+    setAboutPicture("")
   }
 
   const handleSubmit = (e: any) => {
@@ -143,82 +145,45 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
             </div>
             <div className="modal-body">
               <div className="image-upload-container">
-                <div className="image-uploader">
-                  {getImageSrc(0) && (
-                    <CloseIcon
-                      onClick={() => {
-                        handleRemoveImage(0)
-                      }}
-                      className="close-icon"
-                    />
-                  )}
-                  <label className="upload-input" htmlFor="upload-1">
-                    {getImageSrc(0) ? (
-                      <img src={getImageSrc(0)} className="content-img" />
-                    ) : (
-                      <AddIcon />
-                    )}
-                  </label>
-                  <input
-                    type="file"
-                    value=""
-                    id="upload-1"
-                    onChange={(e) => handleFileInput(e, 0)}
-                    hidden
-                  />
-                </div>
-                <div className="image-uploader">
-                  {getImageSrc(1) && (
-                    <CloseIcon
-                      onClick={() => {
-                        handleRemoveImage(1)
-                      }}
-                      className="close-icon"
-                    />
-                  )}
-                  <label className="upload-input" htmlFor="upload-2">
-                    {getImageSrc(1) ? (
-                      <img src={getImageSrc(1)} className="content-img" />
-                    ) : (
-                      <AddIcon />
-                    )}
-                  </label>
-                  <input
-                    type="file"
-                    value=""
-                    id="upload-2"
-                    onChange={(e) => handleFileInput(e, 1)}
-                    hidden
-                  />
-                </div>
-                <div className="image-uploader">
-                  {getImageSrc(2) && (
-                    <CloseIcon
-                      onClick={() => {
-                        handleRemoveImage(2)
-                      }}
-                      className="close-icon"
-                    />
-                  )}
-                  <label className="upload-input" htmlFor="upload-3">
-                    {getImageSrc(2) ? (
-                      <img src={getImageSrc(2)} className="content-img" />
-                    ) : (
-                      <AddIcon />
-                    )}
-                  </label>
-                  <input
-                    type="file"
-                    value=""
-                    id="upload-3"
-                    onChange={(e) => handleFileInput(e, 2)}
-                    hidden
-                  />
-                </div>
+                {[0, 1, 2].map((item) => {
+                  return (
+                    <div className="image-uploader" key={item}>
+                      {getImageSrc(item) && (
+                        <CloseIcon
+                          onClick={() => {
+                            handleRemoveImage(item)
+                          }}
+                          className="close-icon"
+                        />
+                      )}
+                      <label className="upload-input" htmlFor={`upload-${item+1}`}>
+                        {getImageSrc(item) ? (
+                          <img src={getImageSrc(item)} className="content-img" />
+                        ) : (
+                          <AddIcon />
+                        )}
+                      </label>
+                      <input
+                        type="file"
+                        value=""
+                        id={`upload-${item+1}`}
+                        onChange={(e) => handleFileInput(e, item)}
+                        hidden
+                      />
+                    </div>
+                  )
+                })}
               </div>
               <div className="modal-text-container">
                 <input
                   placeholder={thisPage.aboutPicture}
+                  value={aboutPicture}
+                  onChange={(e) => {
+                    setAboutPicture(e.target.value)
+                  }}
+                />
+                <input
+                  placeholder="שם מעלה התמונה"
                   value={uploader}
                   onChange={(e) => {
                     setUploader(e.target.value)
