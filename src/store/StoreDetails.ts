@@ -4,6 +4,7 @@ configure({ enforceActions: "always" })
 
 export class StoreDetails {
   @observable storeData: any = {}
+  @observable systemInfo: any = {}
   @observable hashCode = ""
 
   constructor() {
@@ -18,7 +19,8 @@ export class StoreDetails {
         StoreDetails.name,
         JSON.stringify({
           storeData: this.storeData,
-          hashCode: this.hashCode
+          hashCode: this.hashCode,
+          systemInfo: this.systemInfo
         })
       )
     }
@@ -40,6 +42,12 @@ export class StoreDetails {
   @action
   setHashCode = (hashCode: string) => {
     this.hashCode = hashCode
+    this.save()
+  }
+
+  @action
+  setSystemInfo = (systemInfo: any) => {
+    this.systemInfo = systemInfo
     this.save()
   }
 

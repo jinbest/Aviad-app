@@ -55,12 +55,16 @@ const Section3 = () => {
         </div>
       </div>
       <div className="d-flex justify-center">
-        <div className="play-button">
-          <img src={require("../../assets/img/google-play.png").default} alt="google-play" />
-        </div>
-        <div className="play-button">
-          <img src={require("../../assets/img/app-store.png").default} alt="app-store" />
-        </div>
+        <a href={storeDetails.systemInfo.googleplay} target="_blank" rel="noreferrer">
+          <div className="play-button">
+            <img src={require("../../assets/img/google-play.png").default} alt="google-play" />
+          </div>
+        </a>
+        <a href={storeDetails.systemInfo.appstore} target="_blank" rel="noreferrer">
+          <div className="play-button">
+            <img src={require("../../assets/img/app-store.png").default} alt="app-store" />
+          </div>
+        </a>
       </div>
       <hr className="liner" />
       <GalleryPostModal showModal={showModal} onCloseModal={() => setShowModal(false)} />

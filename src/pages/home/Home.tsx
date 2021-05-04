@@ -23,8 +23,10 @@ const Home = ({ hashCode }: Props) => {
 
   const loadData = async () => {
     const storeData = await apiClient.get<any>(`${Config.SERVICE_API_URL}page/${hashCode}`)
+    const systemInfo = await apiClient.get<any>(`${Config.SERVICE_API_URL}system/info`)
     storeDetails.setStoreData(storeData)
     storeDetails.setHashCode(hashCode)
+    storeDetails.setSystemInfo(systemInfo)
     setLoaded(true)
   }
 
