@@ -44,7 +44,7 @@ const mockData = {
   },
   footer: {
     reserved: "כל הזכויות שמורות לאפליקציית שבעה",
-    designedby: 'נבנה ועוצב ע"י קבוצת אוברסייט',
+    designedby: 'נבנה ועוצב ע"י קבוצת',
     oversight: "אוברסייט",
   },
 }
