@@ -16,6 +16,9 @@ import { TextField } from "@material-ui/core"
 import moment from "moment"
 import { storeDetails } from "../store"
 import { observer } from "mobx-react"
+import 'moment/locale/he'
+
+moment.locale('he');
 
 type Props = {
   showModal: boolean

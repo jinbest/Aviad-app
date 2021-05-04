@@ -5,6 +5,9 @@ import Config from "../../config/config"
 import { mockData } from "../../assets/mock-data"
 import moment from "moment"
 import { LazyImg } from "../../components/"
+import 'moment/locale/he'
+
+moment.locale('he');
 
 const Section1 = () => {
   const thisPage = storeDetails.storeData.page

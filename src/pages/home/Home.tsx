@@ -3,7 +3,7 @@ import { Section1, Section2, Section3, Section4 } from "."
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
 import { storeDetails } from "../../store"
 import Config from "../../config/config"
-import { Preloader, Header } from "../../components"
+import { Preloader, Header, Footer } from "../../components"
 import { observer } from "mobx-react"
 
 type Props = {
@@ -39,6 +39,7 @@ const Home = ({ hashCode }: Props) => {
             <Section3 />
             <Section4 />
           </div>
+          <Footer />
         </>
       ) : (
         <Preloader />

@@ -9,6 +9,9 @@ import Config from "../../config/config"
 import Notification from "../../const/notification"
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
 import DcSpinner from "../../components/dc-spinner"
+import 'moment/locale/he'
+
+moment.locale('he');
 
 const Section4 = () => {
   const apiClient = AuthenticatedAPiClient.getInstance()

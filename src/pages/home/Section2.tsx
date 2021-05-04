@@ -7,6 +7,9 @@ import { DateParam } from "../../model/date-param"
 import { getFormattedDate } from "../../services/helper"
 import { isEmpty } from "lodash"
 import { CustomButton } from "../../components"
+import 'moment/locale/he'
+
+moment.locale('he');
 
 const Section2 = () => {
   const thisPage = storeDetails.storeData.events

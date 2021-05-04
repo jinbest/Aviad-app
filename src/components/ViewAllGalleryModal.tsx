@@ -9,6 +9,9 @@ import { LazyImg, ImageViewerModal, GalleryPostModal } from "."
 import AddCircleIcon from "@material-ui/icons/AddCircle"
 import _ from "lodash"
 import moment from "moment"
+import 'moment/locale/he'
+
+moment.locale('he');
 
 type Props = {
   showModal: boolean

@@ -17,8 +17,8 @@ const mockData = {
       subProfile: {
         title: "באירוח של",
         name: "יונתן ארנון",
-        img: avatar
-      }
+        img: avatar,
+      },
     },
     section3: {
       morePicture: "לעוד תמונות",
@@ -28,8 +28,8 @@ const mockData = {
         datePhoto: "תאריך צילום",
         description: "תיאור ותאריך זהים לכל התמונות",
         raise: "העלאה",
-        fromGallery: "מהגלריה"
-      }
+        fromGallery: "מהגלריה",
+      },
     },
     section4: {
       subTitle: "תגובות",
@@ -37,13 +37,16 @@ const mockData = {
       addedComment: "הוסיף תגובה:",
       placeHolder: {
         comment: "כתבו תגובה חדשה",
-        fullname: "כתבו שם מלא"
+        fullname: "כתבו שם מלא",
       },
-      submit: submit
-    }
-  }
+      submit: submit,
+    },
+  },
+  footer: {
+    reserved: "כל הזכויות שמורות לאפליקציית שבעה",
+    designedby: 'נבנה ועוצב ע"י קבוצת אוברסייט',
+    oversight: "אוברסייט",
+  },
 }
 
-export {
-  mockData
-}
+export { mockData }
