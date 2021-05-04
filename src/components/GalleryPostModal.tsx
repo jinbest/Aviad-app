@@ -16,9 +16,9 @@ import { TextField } from "@material-ui/core"
 import moment from "moment"
 import { storeDetails } from "../store"
 import { observer } from "mobx-react"
-import 'moment/locale/he'
+import "moment/locale/he"
 
-moment.locale('he');
+moment.locale("he")
 
 type Props = {
   showModal: boolean
@@ -29,7 +29,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
   const apiClient = AuthenticatedAPiClient.getInstance()
   const thisPage = mockData.static.section3.modal
 
-  const [checked, setChecked] = useState(false)
+  // const [checked, setChecked] = useState(true)
   const [images, setImages] = useState<any[]>(new Array(3).fill(null))
   const [imageFiles, setImageFiles] = useState<any[]>(new Array(3).fill(null))
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
@@ -41,7 +41,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
   const handleClose = () => {
     setImages(new Array(3).fill(null))
     setImageFiles(new Array(3).fill(null))
-    setChecked(false)
+    // setChecked(true)
     onCloseModal(false)
     setUploader("")
     setAboutPicture("")
@@ -62,7 +62,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
 
       bodyFormData.append("hash", storeDetails.hashCode)
       bodyFormData.append("uploader", uploader)
-      bodyFormData.append("title", item.name)
+      bodyFormData.append("title", aboutPicture)
       bodyFormData.append("taken", new Date(date).getTime().toString())
       bodyFormData.append("image", item)
 
@@ -159,7 +159,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
                           className="close-icon"
                         />
                       )}
-                      <label className="upload-input" htmlFor={`upload-${item+1}`}>
+                      <label className="upload-input" htmlFor={`upload-${item + 1}`}>
                         {getImageSrc(item) ? (
                           <img src={getImageSrc(item)} className="content-img" />
                         ) : (
@@ -169,7 +169,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
                       <input
                         type="file"
                         value=""
-                        id={`upload-${item+1}`}
+                        id={`upload-${item + 1}`}
                         onChange={(e) => handleFileInput(e, item)}
                         hidden
                       />
@@ -210,7 +210,12 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
                   <p className="normal-text" style={{ marginRight: "10px" }}>
                     {thisPage.description}
                   </p>
-                  <CustomToggler checked={checked} handleStatus={setChecked} />
+                  <CustomToggler
+                    checked={true}
+                    handleStatus={() => {
+                      //EMPTY
+                    }}
+                  />
                 </div>
               </div>
             </div>

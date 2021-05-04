@@ -9,9 +9,9 @@ import Config from "../../config/config"
 import Notification from "../../const/notification"
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
 import DcSpinner from "../../components/dc-spinner"
-import 'moment/locale/he'
+import "moment/locale/he"
 
-moment.locale('he');
+moment.locale("he")
 
 const Section4 = () => {
   const apiClient = AuthenticatedAPiClient.getInstance()
@@ -95,7 +95,7 @@ const Section4 = () => {
             }}
           />
           <hr className="comment-liner" />
-          <div className="d-flex space-between align-center" style={{height: '40px'}}>
+          <div className="d-flex space-between align-center" style={{ height: "40px" }}>
             <div onClick={handleSubmit} className="submit">
               <img src={thisMock.submit} alt="submit-img" />
             </div>
@@ -108,6 +108,19 @@ const Section4 = () => {
             />
           </div>
         </div>
+      </div>
+      <hr className="liner" />
+      <div className="d-flex justify-center" style={{ margin: "20px 0" }}>
+        <a href={storeDetails.systemInfo.googleplay} target="_blank" rel="noreferrer">
+          <div className="play-button">
+            <img src={require("../../assets/img/google-play.png").default} alt="google-play" />
+          </div>
+        </a>
+        <a href={storeDetails.systemInfo.appstore} target="_blank" rel="noreferrer">
+          <div className="play-button">
+            <img src={require("../../assets/img/app-store.png").default} alt="app-store" />
+          </div>
+        </a>
       </div>
       <Toast params={toastParams} resetStatuses={resetStatuses} />
       <DcSpinner show={submited} />
