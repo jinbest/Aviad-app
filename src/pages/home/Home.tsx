@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Section1, Section2, Section3, Section4 } from "."
+import { Section1, Section2, Section3, Section4, Section5 } from "."
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
 import { storeDetails } from "../../store"
 import Config from "../../config/config"
@@ -14,6 +14,7 @@ const Home = ({ hashCode }: Props) => {
   const apiClient = AuthenticatedAPiClient.getInstance()
 
   const [loaded, setLoaded] = useState(false)
+  const [isanon, setIsaNan] = useState(false)
 
   useEffect(() => {
     if (hashCode) {
@@ -27,6 +28,7 @@ const Home = ({ hashCode }: Props) => {
     storeDetails.setStoreData(storeData)
     storeDetails.setHashCode(hashCode)
     storeDetails.setSystemInfo(systemInfo)
+    setIsaNan(storeData.isanon)
     setLoaded(true)
   }
 
@@ -36,10 +38,11 @@ const Home = ({ hashCode }: Props) => {
         <>
           <Header />
           <div className="home">
-            <Section1 />
+            {!isanon && <Section1 />}
             <Section2 />
-            <Section3 />
-            <Section4 />
+            {!isanon && <Section3 />}
+            {!isanon && <Section4 />}
+            <Section5 />
           </div>
           <Footer />
         </>

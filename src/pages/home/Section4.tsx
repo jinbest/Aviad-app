@@ -110,18 +110,6 @@ const Section4 = () => {
         </div>
       </div>
       <hr className="liner" />
-      <div className="d-flex justify-center" style={{ margin: "20px 0" }}>
-        <a href={storeDetails.systemInfo.googleplay} target="_blank" rel="noreferrer">
-          <div className="play-button">
-            <img src={require("../../assets/img/google-play.png").default} alt="google-play" />
-          </div>
-        </a>
-        <a href={storeDetails.systemInfo.appstore} target="_blank" rel="noreferrer">
-          <div className="play-button">
-            <img src={require("../../assets/img/app-store.png").default} alt="app-store" />
-          </div>
-        </a>
-      </div>
       <Toast params={toastParams} resetStatuses={resetStatuses} />
       <DcSpinner show={submited} />
     </div>

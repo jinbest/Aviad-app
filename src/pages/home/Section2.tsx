@@ -26,6 +26,7 @@ const Section2 = () => {
         day: moment(element.startdate).format("DD"),
         month: Number(moment(element.startdate).format("MM")),
         time: moment(element.startdate).format("hh:mm"),
+        typeName: element.typeName
       })
       tmpEndDates.push({
         day: moment(element.enddate).format("DD"),
@@ -59,7 +60,7 @@ const Section2 = () => {
           startDates.map((item: DateParam, index: number) => {
             return (
               <div className="formatted-date-container" key={index}>
-                <p className="medium-text">{getFormattedDate(item, endDates[index])}</p>
+                <p className="medium-text">{item.typeName} ב{getFormattedDate(item, endDates[index])}</p>
                 <p className="heavy-text">{thisPage[index].location}</p>
               </div>
             )
