@@ -15,7 +15,7 @@ const Section1 = () => {
   const avatar = thisPage.image
   const birthDay = moment(thisPage.birthdate, "YYYY-MM-DD")
   const deathDay = moment(thisPage.deathdate, "YYYY-MM-DD")
-  const age = Math.round(moment.duration(birthDay.diff(deathDay)).asYears())
+  const age = Math.round(moment.duration(deathDay.diff(birthDay)).asYears())
 
   return (
     <div className="section">
@@ -30,7 +30,7 @@ const Section1 = () => {
       <div className="introduction">
         <p className="heavy-text">{thisPage.fullname}</p>
         <p className="normal-text">{`נפטר בגיל ${age} בתאריך ${moment(deathDay).format(
-          "MM.DD.YYYY"
+          "DD.MM.YYYY"
         )}`}</p>
       </div>
       <div className="main-container">
