@@ -68,6 +68,7 @@ const Section4 = () => {
 
   return (
     <div className="section">
+    <hr className="liner" />
       <div className="main-container">
         <p className="heavy-text">{thisMock.subTitle}</p>
       </div>
@@ -109,7 +110,6 @@ const Section4 = () => {
           </div>
         </div>
       </div>
-      <hr className="liner" />
       <Toast params={toastParams} resetStatuses={resetStatuses} />
       <DcSpinner show={submited} />
     </div>

@@ -65,8 +65,7 @@ const Section2 = () => {
               </div>
             )
           })}
-      </div>
-      <hr className="liner" />
+      </div>      
     </div>
   )
 }

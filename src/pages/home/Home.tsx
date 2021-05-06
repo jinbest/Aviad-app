@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Section1, Section2, Section3, Section4, Section5 } from "."
+import { Section1, Section2, Section3, Section4 } from "."
 import AuthenticatedAPiClient from "../../services/authenticated-api-client"
 import { storeDetails } from "../../store"
 import Config from "../../config/config"
@@ -35,17 +35,16 @@ const Home = ({ hashCode }: Props) => {
   return (
     <React.Fragment>
       {loaded ? (
-        <>
+        <div style={{minHeight: '100vh'}}>
           <Header />
           <div className="home">
             {!isanon && <Section1 />}
             <Section2 />
             {!isanon && <Section3 />}
             {!isanon && <Section4 />}
-            <Section5 />
           </div>
           <Footer />
-        </>
+        </div>
       ) : (
         <Preloader />
       )}

@@ -17,6 +17,7 @@ const Section3 = () => {
 
   return (
     <div className="section">
+    <hr className="liner" />
       <div className="main-container d-flex space-between">
         <p
           className="heavy-text"
@@ -54,7 +55,6 @@ const Section3 = () => {
           </div>
         </div>
       </div>
-      <hr className="liner" />
       <GalleryPostModal showModal={showModal} onCloseModal={() => setShowModal(false)} />
       <ImageViewerModal
         showModal={showImageViewer}
