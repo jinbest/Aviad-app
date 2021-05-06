@@ -45,7 +45,7 @@ const Section2 = () => {
       </div>
       <div className="custom-button-container">
         <a
-          href={`https://waze.com/ul?q=${storeDetails.storeData.page.location}`}
+          href={`https://waze.com/ul?q=${thisPage[0].location}`}
           target="_blank"
           rel="noreferrer"
         >
@@ -61,6 +61,7 @@ const Section2 = () => {
             return (
               <div className="formatted-date-container" key={index}>
                 <p className="medium-text">{item.typeName} ב{getFormattedDate(item, endDates[index])}</p>
+                <p className="medium-text">{thisPage[index].message}</p>
                 <p className="heavy-text">{thisPage[index].location}</p>
               </div>
             )

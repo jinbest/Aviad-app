@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Provider storeDetails={storeDetails}>
       <div className="Container">
-        <Router>
+        <Router basename={'/thg_webapp'}>
           <BaseRouter hashCode={hashCode} />
         </Router>
       </div>

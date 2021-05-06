@@ -26,8 +26,8 @@ const Footer = () => {
       </div>
     </div>
     <div className="footer">
-      <p className="mid-text">{mockData.footer.reserved}</p>
-      <span className="mid-text">{` ${mockData.footer.designedby} `}&copy;</span>
+      <p className="mid-text">{mockData.footer.reserved} &copy;</p>
+      <span className="mid-text">{` ${mockData.footer.designedby}`}</span>
       <a className="mid-text" href="https://oversight.co.il/">{` ${mockData.footer.oversight}`}</a>
     </div></>
   )
