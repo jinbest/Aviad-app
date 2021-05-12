@@ -13,6 +13,7 @@ moment.locale('he');
 
 const Section2 = () => {
   const thisPage = storeDetails.storeData.events
+  const pageData = storeDetails.storeData.page
   const thisMock = mockData.static.section2
 
   const [startDates, setStartDates] = useState<DateParam[]>([] as DateParam[])
@@ -23,15 +24,15 @@ const Section2 = () => {
       tmpEndDates: DateParam[] = []
     thisPage.forEach((element: any) => {
       tmpStartDates.push({
-        day: moment(element.startdate).format("DD"),
-        month: Number(moment(element.startdate).format("MM")),
-        time: moment(element.startdate).format("hh:mm"),
+        day: moment.utc(element.startdate).format("DD"),
+        month: Number(moment.utc(element.startdate).format("MM")),
+        time: moment.utc(element.startdate).format("HH:mm"),
         typeName: element.typeName
       })
       tmpEndDates.push({
-        day: moment(element.enddate).format("DD"),
-        month: Number(moment(element.enddate).format("MM")),
-        time: moment(element.enddate).format("hh:mm"),
+        day: moment.utc(element.enddate).format("DD"),
+        month: Number(moment.utc(element.enddate).format("MM")),
+        time: moment.utc(element.enddate).format("HH:mm"),
       })
     })
     setStartDates([...tmpStartDates])
@@ -45,13 +46,13 @@ const Section2 = () => {
       </div>
       <div className="custom-button-container">
         <a
-          href={`https://waze.com/ul?q=${thisPage[0].location}`}
+          href={`https://waze.com/ul?q=${thisPage.length > 0 ? thisPage[0].location : ''}`}
           target="_blank"
           rel="noreferrer"
         >
           <CustomButton title="נווט לאירוע" type="AREA" />
         </a>
-        <a href="tel:1234567890">
+        <a href={`tel:${pageData != null ? pageData.phone : ''}`}>
           <CustomButton title="התקשר ליוצר הדף" type="PHONE" />
         </a>
       </div>
