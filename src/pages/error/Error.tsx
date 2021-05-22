@@ -18,8 +18,8 @@ const Error = () => {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.title}>
-        OOPS! YOU NEED TO INPUT HASHCODE IN THE LINK TO RUN APP SUCCESSFULLY.
+      <h1 className={classes.title} dir="rtl">
+        אופס! נסה להיכנס לקישור ששותף איתך שוב.
       </h1>
     </div>
   )

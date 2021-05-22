@@ -1,5 +1,5 @@
 export default class Notification {
-  static SUCCESS_MSG = "Your request has been successed!"
-  static FAILED_RUQUEST = "Something went wrong, please try again."
-  static FAILED_MSG = "Please input correct values."
+  static SUCCESS_MSG = "הבקשה שלך בוצעה בהצלחה"
+  static FAILED_RUQUEST = "משהו השתבש. נא נסה שנית"
+  static FAILED_MSG = "אנא הכנס ערכים תקינים"
 }

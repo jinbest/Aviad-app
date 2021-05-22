@@ -1,5 +1,5 @@
 import logoImg from "./img/logo.jpg"
-import avatar from "./img/avatar.jpg"
+import avatar from "./img/avatar.png"
 import lazyLoader from "./img/loading.gif"
 import submit from "./img/submit.png"
 
@@ -8,7 +8,7 @@ const mockData = {
   lazyLoader: lazyLoader,
   static: {
     section1: {
-      subTitle: "אודות",
+      subTitle: "הסיפור שלי",
       avatar: avatar,
     },
     section2: {
@@ -40,6 +40,11 @@ const mockData = {
         fullname: "כתבו שם מלא",
       },
       submit: submit,
+    },
+    section5: {
+      subTitle: "קישורים",
+      link: "קישור",
+      description: "תיאור",
     },
   },
   footer: {
