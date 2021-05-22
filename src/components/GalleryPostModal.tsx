@@ -51,7 +51,7 @@ const GalleryPostModal = ({ showModal, onCloseModal }: Props) => {
     e.preventDefault()
     if (!uploader) {
       setToastParams({
-        msg: "Please fill input form first before you submit.",
+        msg: "אנא מלא את כל הפרטים לפני העלאה",
         isError: true,
       })
       return

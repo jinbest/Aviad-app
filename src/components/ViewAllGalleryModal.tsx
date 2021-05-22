@@ -21,13 +21,13 @@ type Props = {
 const ViewAllGalleryModal = ({ showModal, onCloseModal }: Props) => {
   const thisPage = storeDetails.storeData.gallery
 
-  const gallery = _.sortBy(_.cloneDeep(thisPage), (o) => o.created).reverse()
+  const gallery = _.sortBy(_.cloneDeep(thisPage), (o) => o.taken).reverse()
   const allYears: any[] = []
   gallery.forEach((item: any) => {
-    allYears.push(moment(item.created).format("YYYY"))
+    allYears.push(moment(item.taken).format("YYYY"))
   })
   const years = _.uniqBy(allYears, (item) => item)
-  const groupByGallery = _.groupBy(gallery, (o) => moment(o.created).format("YYYY"))
+  const groupByGallery = _.groupBy(gallery, (o) => moment(o.taken).format("YYYY"))
 
   const [showImageViewer, setShowImageViewerModal] = useState(false)
   const [img, setImg] = useState("")
