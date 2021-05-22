@@ -23,7 +23,7 @@ const Section5 = () => {
           linksData.map((item: any, index: number) => {
             return (
               <div key={index}>
-                <p className="medium-text">{item.title} - <a href={item.url}>{item.url}</a></p>
+                <p className="medium-text">{'https://' + item.title} - <a href={item.url}>{item.url}</a></p>
               </div>
             )
           })}
