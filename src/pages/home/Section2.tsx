@@ -56,6 +56,11 @@ const Section2 = () => {
           <CustomButton title="התקשר ליוצר הדף" type="PHONE" />
         </a>
       </div>
+      <div className="custom-button-container">
+      <a href={`https://api.whatsapp.com/send/?phone=+972${pageData != null ? pageData.phone : ''}`}>
+          <CustomButton title="שלח וואטסאפ" type="WHATSAPP" />
+        </a>
+        </div>
       <div className="main-container">
         {!isEmpty(startDates) &&
           startDates.map((item: DateParam, index: number) => {
